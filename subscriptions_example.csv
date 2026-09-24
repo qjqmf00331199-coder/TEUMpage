@@ -1,0 +1,6 @@
+id,user_id,service_id,plan_type,bundle_provider,price
+1,u1,netflix-standard,개별,,13500
+2,u1,disney-plus-standard,개별,,9900
+3,u1,tving-basic,결합,KT,0
+4,u1,naver-membership,개별,,4900
+5,u1,spotify-premium,개별,,10900

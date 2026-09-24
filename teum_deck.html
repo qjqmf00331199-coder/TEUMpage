@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>틈(TEUM) — 서비스 소개</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+/* ===== design tokens (SPEC_02_DESIGN.md) ===== */
+:root{
+  --ink:#16171b; --muted:#626775; --quiet:#9398a4; --line:#e4e7ed;
+  --paper:#fff; --canvas:#f7f8fc;
+  --blue:#3182f6; --blue2:#1f6fe5; --soft:#eaf3ff; --lilac:#eee9ff; --mint:#e7f8f1;
+  --warn-bg:#fff4e3; --warn-fg:#9c6410; --danger:#f04438; --ok:#15946b;
+  --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:64px;
+  --pad:clamp(32px,6vw,96px);
+  --r:20px;
+  --fs-title:clamp(40px,6.2vw,92px);
+  --fs-h:clamp(26px,3.4vw,50px);
+  --fs-lead:clamp(15px,1.35vw,21px);
+  --fs-body:clamp(13px,1.05vw,16px);
+  --fs-num:clamp(38px,5.2vw,80px);
+  --fs-num-s:clamp(26px,3.2vw,48px);
+  --fs-eyebrow:clamp(11px,.95vw,14px);
+}
+
+/* ===== base ===== */
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:clip}
+body{
+  font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  background:var(--canvas); color:var(--ink); font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  /* 정확히 1뷰포트 = 1슬라이드. svh: 모바일 주소창 높이 변화로 스냅 어긋나는 것 방지 */
+  height:100svh; overflow-y:scroll; overflow-x:clip;
+  scroll-snap-type:y mandatory;
+  overscroll-behavior-y:none;
+}
+.slide{
+  height:100svh; width:100%;
+  scroll-snap-align:start; scroll-snap-stop:always;
+  padding:var(--pad);
+  display:flex; flex-direction:column; justify-content:safe center;
+  background:var(--canvas);
+  /* 내용이 넘치면 슬라이드 안에서만 스크롤 — 스냅 지점은 그대로 */
+  overflow-y:auto; overflow-x:hidden;
+}
+.slide:nth-of-type(even){background:var(--paper)}
+
+.eyebrow{font-size:var(--fs-eyebrow);font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--blue2);margin-bottom:var(--s2)}
+h1{font-size:var(--fs-title);font-weight:800;line-height:1.04;letter-spacing:-.03em}
+h2{font-size:var(--fs-h);font-weight:700;line-height:1.18;letter-spacing:-.02em}
+h3{font-size:var(--fs-lead);font-weight:700;line-height:1.35}
+p,li{font-size:var(--fs-body);line-height:1.65;color:var(--muted)}
+.lead{font-size:var(--fs-lead);color:var(--muted);line-height:1.55;max-width:46ch}
+.sub{font-size:var(--fs-body);color:var(--quiet)}
+strong{color:var(--ink);font-weight:700}
+.mt2{margin-top:var(--s2)}.mt3{margin-top:var(--s3)}.mt4{margin-top:var(--s4)}.mt5{margin-top:var(--s5)}
+
+/* ===== entrance animation ===== */
+.slide > *{flex-shrink:0;opacity:0;transform:translateY(16px);transition:opacity .2s ease-out,transform .2s ease-out}
+.slide.in > *{opacity:1;transform:none}
+.slide.in > *:nth-child(2){transition-delay:.06s}
+.slide.in > *:nth-child(3){transition-delay:.12s}
+.slide.in > *:nth-child(4){transition-delay:.18s}
+.slide.in > *:nth-child(5){transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){.slide > *{opacity:1;transform:none;transition:none}}
+
+/* ===== numbers ===== */
+.num{font-size:var(--fs-num);font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.num.blue{color:var(--blue2)}
+.num.red{color:var(--danger)}
+.num-s{font-size:var(--fs-num-s);font-weight:800;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.unit{font-size:.42em;font-weight:700;margin-left:2px}
+
+/* ===== layout ===== */
+.grid{display:grid;gap:var(--s3)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:clamp(16px,2vw,28px)}
+.slide:nth-of-type(even) .card{background:var(--canvas)}
+.card .k{font-size:var(--fs-body);color:var(--quiet);font-weight:600;line-height:1.4}
+.card .v{margin-top:var(--s2)}
+.list{list-style:none;display:grid;gap:12px;margin-top:var(--s3)}
+.list.dim li{color:var(--quiet)}
+.list.dim li strong{color:var(--muted)}
+
+.chip{display:inline-block;padding:6px 12px;border-radius:999px;font-size:var(--fs-eyebrow);font-weight:800;background:var(--soft);color:var(--blue2)}
+.chip.warn{background:var(--warn-bg);color:var(--warn-fg)}
+.chip.ok{background:var(--mint);color:var(--ok)}
+hr.rule{height:1px;background:var(--line);border:0}
+
+/* ===== bar chart (pure CSS) ===== */
+.bars{display:flex;align-items:flex-end;gap:clamp(16px,4vw,64px);height:clamp(180px,26vh,320px)}
+.bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:var(--s2);height:100%}
+.bar .fill{width:100%;max-width:150px;border-radius:12px 12px 0 0;background:var(--soft)}
+.bar:last-child .fill{background:linear-gradient(180deg,var(--blue) 0%,var(--blue2) 100%)}
+.bar .lab{font-size:var(--fs-body);color:var(--quiet);font-weight:600}
+
+/* ===== meter ===== */
+.meter{margin-top:var(--s2);height:10px;border-radius:999px;background:var(--line);overflow:hidden}
+.meter i{display:block;height:100%;border-radius:999px;background:var(--blue)}
+.meter.red i{background:var(--danger)}
+
+/* ===== table ===== */
+.table-wrap{margin-top:var(--s4);overflow-x:auto}
+table{width:100%;min-width:480px;border-collapse:collapse}
+th,td{text-align:left;padding:clamp(8px,1.1vw,14px) var(--s2);border-bottom:1px solid var(--line);font-size:var(--fs-body)}
+th{color:var(--quiet);font-weight:700;font-size:var(--fs-eyebrow);letter-spacing:.06em;text-transform:uppercase}
+td{color:var(--muted)}
+td:first-child{color:var(--ink);font-weight:700;width:60px}
+
+/* ===== page indicator ===== */
+#nav{
+  position:fixed;right:clamp(16px,2.4vw,36px);bottom:clamp(16px,2.4vw,36px);z-index:10;
+  font-size:13px;font-weight:800;color:var(--quiet);
+  background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  border:1px solid var(--line);border-radius:999px;padding:8px 16px;
+  font-variant-numeric:tabular-nums;
+}
+#nav b{color:var(--ink)}
+.sr-only{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* ===== responsive ===== */
+@media(max-width:900px){
+  .g3,.g4{grid-template-columns:repeat(2,1fr)}
+  .slide{justify-content:flex-start;padding-top:var(--s6);padding-bottom:var(--s6)}
+}
+@media(max-width:560px){
+  :root{--pad:24px;--s3:14px;--s4:20px;--s5:26px;--s6:32px}
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .bars{gap:12px;height:clamp(140px,20vh,200px)}
+  .card{padding:14px}
+  .meter{display:none}
+}
+
+/* ===== print: 1 slide = 1 page ===== */
+@media print{
+  body{height:auto;overflow:visible;scroll-snap-type:none;background:#fff}
+  .slide{min-height:0;height:auto;flex:none;overflow:visible;page-break-after:always;break-after:page;background:#fff !important;padding:40px}
+  .slide > *{opacity:1 !important;transform:none !important;transition:none}
+  #nav{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ 01 타이틀 ============ -->
+<section class="slide" aria-label="타이틀">
+  <p class="eyebrow">TEUM · Subscription Manager</p>
+  <h1>틈<span style="color:var(--quiet);font-weight:400">(TEUM)</span><br>새는 구독비를<br>잠그다</h1>
+  <p class="lead mt4">흩어진 구독을 한 곳에 모아, <strong>결제 전에</strong> 확인하고 관리하게 만드는 구독 관리 서비스.</p>
+</section>
+
+<!-- ============ 02 시장 배경 ============ -->
+<section class="slide" aria-label="시장 배경">
+  <p class="eyebrow">Market</p>
+  <h2>국내 구독 경제 시장은<br>10년 만에 <span style="color:var(--blue2)">4배</span>로 커진다</h2>
+  <div class="bars mt5" role="img" aria-label="국내 구독 경제 시장 규모. 2016년 25.9조 원, 2020년 40.1조 원, 2025년 예상 100조 원.">
+    <div class="bar"><span class="num-s">25.9<span class="unit">조</span></span><div class="fill" style="height:26%"></div><span class="lab">2016</span></div>
+    <div class="bar"><span class="num-s">40.1<span class="unit">조</span></span><div class="fill" style="height:40%"></div><span class="lab">2020</span></div>
+    <div class="bar"><span class="num-s" style="color:var(--blue2)">100<span class="unit">조</span></span><div class="fill" style="height:100%"></div><span class="lab">2025 (예상)</span></div>
+  </div>
+  <p class="sub mt3">연평균 성장률 <strong>CAGR 11%</strong></p>
+</section>
+
+<!-- ============ 03 문제 1 · 구독 확대 ============ -->
+<section class="slide" aria-label="문제 1, 구독 확대">
+  <p class="eyebrow">Problem 01 · 구독 확대</p>
+  <h2>거의 모두가 구독하고,<br>대부분이 여러 개를 쓴다</h2>
+  <div class="grid g3 mt5">
+    <div class="card"><div class="k">구독 서비스 이용 경험</div><div class="v num blue">94.8%</div><div class="meter"><i style="width:94.8%"></i></div></div>
+    <div class="card"><div class="k">3개 이상 동시 구독</div><div class="v num">66.1%</div><div class="meter"><i style="width:66.1%"></i></div></div>
+    <div class="card"><div class="k">4개 이상 구독 <span class="chip">자체 설문</span></div><div class="v num">47%</div><div class="meter"><i style="width:47%"></i></div></div>
+  </div>
+</section>
+
+<!-- ============ 04 문제 2 · 정보 분산 ============ -->
+<section class="slide" aria-label="문제 2, 정보 분산">
+  <p class="eyebrow">Problem 02 · 정보 분산</p>
+  <h2>구독은 늘었는데,<br>모아 볼 곳이 없다</h2>
+  <div class="grid g4 mt5">
+    <div class="card"><div class="k">통합 관리 불가로 불편</div><div class="v num-s">65%</div><div class="meter"><i style="width:65%"></i></div></div>
+    <div class="card"><div class="k">통합 관리 희망</div><div class="v num-s" style="color:var(--blue2)">71%</div><div class="meter"><i style="width:71%"></i></div></div>
+    <div class="card"><div class="k">여러 앱 오가며 탐색</div><div class="v num-s">68%</div><div class="meter"><i style="width:68%"></i></div></div>
+    <div class="card"><div class="k">그 과정이 번거로움</div><div class="v num-s">83%</div><div class="meter"><i style="width:83%"></i></div></div>
+  </div>
+</section>
+
+<!-- ============ 05 문제 3 · 비용 낭비 + 시점 누락 ============ -->
+<section class="slide" aria-label="문제 3, 비용 낭비와 시점 누락">
+  <p class="eyebrow">Problem 03 · 비용 낭비 + 시점 누락</p>
+  <h2>관리하지 못한 구독은<br>그대로 돈이 샌다</h2>
+  <div class="grid g2 mt5">
+    <div class="card"><div class="k">관리 부족으로 비용 낭비 경험</div><div class="v num">77.4%</div></div>
+    <div class="card"><div class="k">해지 절차가 어려움</div><div class="v num">47.2%</div></div>
+    <div class="card"><div class="k">결제일·해지일 등 주요 날짜를 정확히 인지</div><div class="v num red">15%</div></div>
+    <div class="card"><div class="k">무료체험 후 자동결제 경험</div><div class="v num">56%</div></div>
+  </div>
+</section>
+
+<!-- ============ 06 문제 4 · 혜택 미활용 ============ -->
+<section class="slide" aria-label="문제 4, 혜택 미활용">
+  <p class="eyebrow">Problem 04 · 혜택 미활용</p>
+  <h2>이미 낸 돈의 값어치도<br>다 쓰지 못한다</h2>
+  <div class="grid g3 mt5">
+    <div class="card"><div class="k">사용법을 몰라 혜택 미사용</div><div class="v num">42%</div><div class="meter"><i style="width:42%"></i></div></div>
+    <div class="card"><div class="k">혜택을 뒤늦게 인지</div><div class="v num red">82%</div><div class="meter red"><i style="width:82%"></i></div></div>
+    <div class="card"><div class="k">혜택을 충분히 인지</div><div class="v num">35%</div><div class="meter"><i style="width:35%"></i></div></div>
+  </div>
+</section>
+
+<!-- ============ 07 핵심 인사이트 · 문제 정의 ============ -->
+<section class="slide" aria-label="핵심 인사이트와 문제 정의">
+  <p class="eyebrow">Insight · 문제 정의</p>
+  <h2 style="max-width:22ch">정보가 부족한 게 아니다</h2>
+  <p class="lead mt3">문제는 <strong>통합 파악</strong>과 <strong>적시 행동</strong>의 경험이 없다는 것.</p>
+  <hr class="rule mt4">
+  <div class="grid g3 mt4">
+    <div class="card"><div class="k">01</div><h3 class="v">흩어져 있다</h3><p class="mt2">앱마다 따로. 한 화면에 모이지 않는다.</p></div>
+    <div class="card"><div class="k">02</div><h3 class="v">때를 놓친다</h3><p class="mt2">결제일·무료체험 종료일을 결제 후에 안다.</p></div>
+    <div class="card"><div class="k">03</div><h3 class="v">행동으로 안 이어진다</h3><p class="mt2">알아도 해지·혜택 사용까지 가지 않는다.</p></div>
+  </div>
+</section>
+
+<!-- ============ 08 페르소나 ============ -->
+<section class="slide" aria-label="페르소나">
+  <p class="eyebrow">Persona</p>
+  <h2>김독구</h2>
+  <p class="lead mt3">구독은 여러 개, 기억나는 건 몇 개. 카드 명세서를 보고 나서야 "이거 아직도 나가고 있었네" 하는 사람.</p>
+  <div class="grid g3 mt5">
+    <div class="card"><div class="k">상황</div><h3 class="v">여러 앱에 흩어진 구독</h3><p class="mt2">어디서 얼마가 언제 나가는지 한 번에 확인할 방법이 없다.</p></div>
+    <div class="card"><div class="k">행동</div><h3 class="v">결제 후에야 인지</h3><p class="mt2">무료체험이 자동결제로 넘어간 뒤 알아차린다.</p></div>
+    <div class="card"><div class="k">니즈</div><h3 class="v">결제 전에 확인하고 싶다</h3><p class="mt2">한 화면에서 보고, 그 자리에서 정리하고 싶다.</p></div>
+  </div>
+</section>
+
+<!-- ============ 09 핵심 기능 ============ -->
+<section class="slide" aria-label="핵심 기능">
+  <p class="eyebrow">Core Features · ICE 우선순위</p>
+  <h2>네 가지 기능으로<br>확인에서 행동까지 잇는다</h2>
+  <div class="grid g4 mt5">
+    <div class="card">
+      <span class="chip">ICE 4.67 · P1</span>
+      <h3 class="mt3">내 구독 대시보드</h3>
+      <p class="mt2">한 화면에 모아 보여주면, 총 지출과 불필요한 구독을 스스로 판단한다.</p>
+    </div>
+    <div class="card">
+      <span class="chip">ICE 3.67 · P2</span>
+      <h3 class="mt3">구독 캘린더</h3>
+      <p class="mt2">결제일·종료일을 미리 보여주면, 결제 전에 행동한다.</p>
+    </div>
+    <div class="card">
+      <span class="chip warn">ICE 2.67 · P3</span>
+      <h3 class="mt3">혜택 점검하기</h3>
+      <p class="mt2">보유 구독의 미사용 혜택을 짚어주면, 실사용률이 오른다.</p>
+    </div>
+    <div class="card">
+      <span class="chip warn">ICE 2.00 · P4</span>
+      <h3 class="mt3">AI 이미지 등록</h3>
+      <p class="mt2">결제 내역 캡처만으로 등록되면, 최초 입력 이탈이 준다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 MVP 스코프 ============ -->
+<section class="slide" aria-label="MVP 스코프">
+  <p class="eyebrow">MVP Scope</p>
+  <h2>먼저 만들 것과<br>지금은 만들지 않을 것</h2>
+  <div class="grid g2 mt5">
+    <div class="card" style="border-color:var(--blue)">
+      <span class="chip ok">In-scope</span>
+      <ul class="list">
+        <li><strong>내 구독 대시보드</strong> — 구독 목록과 월 총액</li>
+        <li><strong>구독 캘린더</strong> — 결제일·무료체험 종료일</li>
+        <li><strong>구독 수동 등록·수정·삭제</strong></li>
+        <li><strong>결제 전 알림</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="chip">Out-of-scope</span>
+      <ul class="list dim">
+        <li><strong>혜택 점검하기</strong> — P3, 다음 단계</li>
+        <li><strong>AI 이미지 등록</strong> — P4, 다음 단계</li>
+        <li><strong>카드사·계좌 자동 연동</strong></li>
+        <li><strong>앱 내 해지 대행</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11 북극성 지표 ============ -->
+<section class="slide" aria-label="북극성 지표">
+  <p class="eyebrow">North Star Metric</p>
+  <h2 style="max-width:24ch">결제 전에 내 구독을<br>확인하고 관리한 사람 수</h2>
+  <div class="grid g2 mt5">
+    <div class="card">
+      <div class="k">보조지표 ① 확인율</div>
+      <div class="v" style="font-size:var(--fs-lead);font-weight:700;color:var(--ink)">대시보드·캘린더 조회 사용자 ÷ 전체 활성 사용자</div>
+      <p class="mt2">구독을 “보는” 습관이 생겼는가.</p>
+    </div>
+    <div class="card">
+      <div class="k">보조지표 ② 관리율</div>
+      <div class="v" style="font-size:var(--fs-lead);font-weight:700;color:var(--ink)">등록·수정·해지 등 관리 행동 사용자 ÷ 확인 사용자</div>
+      <p class="mt2">보는 데서 그치지 않고 움직였는가.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12 성장 · 가드레일 ============ -->
+<section class="slide" aria-label="성장 지표와 가드레일">
+  <p class="eyebrow">Growth &amp; Guardrails</p>
+  <h2>성장은 결제 주기로,<br>안전은 임계값으로</h2>
+  <div class="grid g3 mt4">
+    <div class="card"><div class="k">Retention</div><h3 class="v">결제 주기 기준</h3><p class="mt2">월 단위가 아니라 사용자의 결제 주기에 맞춰 잔존을 본다.</p></div>
+    <div class="card"><div class="k">실질 절감액</div><h3 class="v">해지·전환으로 아낀 금액</h3><p class="mt2">서비스가 실제로 돈을 아껴줬는지.</p></div>
+    <div class="card"><div class="k">WAMU</div><div class="v num-s" style="color:var(--blue2)">53 → 69명</div><p class="mt2">6주간 <strong>+30%</strong></p></div>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <caption class="sr-only">가드레일 지표와 임계값</caption>
+    <thead><tr><th scope="col">ID</th><th scope="col">가드레일</th><th scope="col">임계값 도달 시 조치</th></tr></thead>
+    <tbody>
+      <tr><td>G1</td><td>알림 수신 거부율</td><td>알림 빈도·문구 재설계</td></tr>
+      <tr><td>G2</td><td>등록 단계 이탈률</td><td>온보딩 단계 축소</td></tr>
+      <tr><td>G3</td><td>오탐 알림 비율</td><td>알림 발송 중단</td></tr>
+      <tr><td>G4</td><td>주요 화면 오류율</td><td>배포 롤백</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<div id="nav" aria-live="polite"><b id="cur">1</b> / <span id="tot">12</span></div>
+
+<script>
+(function(){
+  var slides = [].slice.call(document.querySelectorAll('.slide'));
+  var cur = document.getElementById('cur');
+  var idx = 0;
+  document.getElementById('tot').textContent = slides.length;
+
+  // fade-up on enter + page indicator
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      e.target.classList.add('in');
+      idx = slides.indexOf(e.target);
+      cur.textContent = idx + 1;
+    });
+  }, {threshold: 0.5});
+  slides.forEach(function(s){ io.observe(s); });
+
+  // keyboard navigation
+  var NEXT = {ArrowRight:1, ArrowDown:1, PageDown:1, ' ':1};
+  var PREV = {ArrowLeft:1, ArrowUp:1, PageUp:1};
+  document.addEventListener('keydown', function(e){
+    var d = NEXT[e.key] ? 1 : (PREV[e.key] ? -1 : 0);
+    if(!d) return;
+    var target = Math.min(slides.length - 1, Math.max(0, idx + d));
+    if(target === idx) return;
+    e.preventDefault();
+    slides[target].scrollIntoView({behavior:'smooth'});
+  });
+})();
+</script>
+</body>
+</html>

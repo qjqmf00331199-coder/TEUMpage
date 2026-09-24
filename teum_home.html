@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>테움 홈</title>
+<style>
+:root { --blue: #2576f2; --blue-2: #266bfa; --blue-deep: #245fd5; --blue-hi: #3a8cff; --navy: #14171c; --text: #14171c; --muted: #667085; --line: #dde8f7; --bg: #f4f6fa; --card: #fbfcfd; --white: #ffffff; --leak: #ff7700; --leak-bg: #faecd5; --danger: #ff6b7a; --kakao: #fee500; --letterbox: #dadbdf; --font: "Noto Sans KR","Pretendard","Apple SD Gothic Neo",-apple-system,BlinkMacSystemFont,system-ui,sans-serif; --phone: 390px; --shadow: 0 8px 24px rgba(47,128,237,0.1); --radius: 22px; }
+* { box-sizing: border-box; }
+body, html { margin: 0px; padding: 0px; min-height: 100%; }
+body { background: rgb(216, 222, 232); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; }
+.stage { min-height: 100dvh; position: relative; }
+.stage.mobile { display: flex; justify-content: center; background: var(--letterbox); }
+.phone { position: relative; z-index: 2; width: 390px; height: 844px; border-radius: 44px; overflow: hidden; background: rgb(17, 17, 17); padding: 10px; box-shadow: rgba(15, 23, 42, 0.35) 0px 28px 80px; }
+button, input, select, textarea { font-family: inherit; color: inherit; }
+button { cursor: pointer; border: none; background: none; padding: 0px; }
+a { color: inherit; text-decoration: none; }
+.shell { width: 100%; height: 100%; margin: 0px; background: var(--bg); position: relative; display: flex; flex-direction: column; overflow: hidden; border-radius: 34px; }
+.shell-body { flex: 1 1 0%; display: flex; flex-direction: column; min-height: 0px; position: relative; }
+.scroll { flex: 1 1 0%; overflow: auto; padding: 16px 20px 24px; scrollbar-width: none; }
+.scroll::-webkit-scrollbar { display: none; }
+.scroll.tabbed { padding-bottom: 108px; }
+.tabbar { position: absolute; left: 0px; right: 0px; bottom: 0px; height: 78px; background: rgb(255, 255, 255); border-top: 1px solid rgb(238, 241, 246); display: grid; grid-template-columns: repeat(4, 1fr); z-index: 6; }
+.tabbar a { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; color: var(--muted); font-weight: 500; padding-top: 10px; }
+.tabbar a.on { color: rgb(47, 128, 237); font-weight: 800; }
+.tabbar svg { width: 22px; height: 22px; }
+.fab { position: absolute; right: 18px; bottom: 92px; z-index: 20; width: 58px; height: 58px; border-radius: 50%; background: var(--blue); color: rgb(255, 255, 255); box-shadow: rgba(37, 118, 242, 0.4) 0px 10px 24px; display: grid; place-items: center; font-size: 32px; }
+.home-brand { display: flex; align-items: center; gap: 8px; color: rgb(255, 255, 255); }
+.logo-mark { display: inline-flex; align-items: stretch; height: 22px; width: 20px; position: relative; }
+.logo-mark .bar { width: 7px; height: 100%; border-radius: 99px; background: currentcolor; display: block; }
+.logo-mark .gap { width: 6px; height: 50%; align-self: flex-end; margin: 0px -1px; background: rgb(158, 196, 255); border-radius: 0px 8px 8px 0px; display: block; }
+.logo-word { font-weight: 800; font-size: 22px; letter-spacing: -0.04em; }
+.bell { width: 36px; height: 36px; display: grid; place-items: center; position: relative; color: rgb(255, 255, 255); }
+.bell .badge { position: absolute; top: -2px; right: -2px; min-width: 16px; height: 16px; padding: 0px 4px; border-radius: 99px; background: rgb(255, 59, 48); color: rgb(255, 255, 255); font-size: 10px; font-weight: 800; display: grid; place-items: center; }
+.home-hero { background: linear-gradient(90deg,var(--blue-hi),var(--blue-deep)); color: rgb(255, 255, 255); padding: 18px 20px 72px; }
+.home-hero-top { display: flex; align-items: center; justify-content: space-between; }
+.promo { margin-top: 14px; background: rgb(255, 255, 255); color: var(--text); border-radius: 20px; padding: 16px 16px 12px; min-height: 132px; position: relative; overflow: hidden; box-shadow: rgba(20, 47, 110, 0.12) 0px 10px 24px; }
+.promo .new { display: inline-flex; background: var(--blue-2); color: rgb(255, 255, 255); font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 99px; }
+.promo h2 { margin: 8px 0px 4px; font-size: 18px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.25; }
+.promo p { margin: 0px; font-size: 12px; color: rgb(92, 102, 113); }
+.week-card { margin: -58px 20px 0px; background: var(--blue); color: rgb(255, 255, 255); border-radius: 22px; padding: 14px 10px 12px; position: relative; z-index: 2; }
+.week-card .mo { font-size: 14px; font-weight: 600; padding: 0px 8px 8px; }
+.week { display: grid; grid-template-columns: repeat(7, 1fr); }
+.week button { display: flex; flex-direction: column; align-items: center; gap: 4px; color: rgba(255, 255, 255, 0.8); font-size: 11px; }
+.week .num { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font-size: 14px; font-weight: 700; }
+.week button.on .num { background: rgb(255, 255, 255); color: var(--blue); }
+.week .marks { display: flex; gap: 3px; height: 6px; justify-content: center; }
+.week .marks i { width: 5px; height: 5px; border-radius: 50%; }
+.home-body { margin-top: -28px; background: rgb(255, 255, 255); border-radius: 28px 28px 0px 0px; padding: 36px 20px 96px; min-height: 280px; position: relative; z-index: 1; }
+.overview { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 18px 18px 12px; box-shadow: var(--shadow); }
+.overview .k { color: var(--muted); font-size: 13px; font-weight: 600; }
+.overview .amt { font-size: 32px; font-weight: 800; letter-spacing: -0.04em; margin: 6px 0px 12px; padding-bottom: 12px; border-bottom: 1px solid rgb(238, 241, 246); }
+.leak { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; width: 100%; background: var(--leak-bg); color: var(--leak); border-radius: 12px; padding: 10px 12px; font-size: 12px; font-weight: 700; }
+.leak .cta { margin-left: auto; }
+.section-title { display: flex; align-items: center; justify-content: space-between; margin: 22px 4px 10px; font-size: 16px; font-weight: 800; }
+.row { display: flex; align-items: center; gap: 12px; padding: 12px 0px; border-bottom: 1px solid rgb(240, 243, 248); }
+.row:last-child { border-bottom: 0px; }
+.card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px; }
+.brand { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; color: rgb(255, 255, 255); font-weight: 800; font-size: 14px; flex: 0 0 auto; }
+.grow { flex: 1 1 0%; min-width: 0px; }
+.muted { color: var(--muted); font-size: 12px; }
+.price { font-weight: 800; font-size: 15px; }
+</style>
+</head>
+<body>
+<div class="stage mobile">
+  <div class="phone">
+    <div class="shell">
+      <div class="shell-body">
+        <div class="scroll flush tabbed">
+          <div class="home-hero">
+            <div class="home-hero-top">
+              <div class="home-brand">
+                <span class="logo-mark"><span class="bar"></span><span class="gap"></span></span>
+                <span class="logo-word">테움</span>
+              </div>
+              <div class="bell">🔔<span class="badge">2</span></div>
+            </div>
+            <div class="promo">
+              <span class="new">NEW</span>
+              <h2>이번 달 새어나간 돈,<br>테움이 찾아드려요</h2>
+              <p>구독 3건에서 12,000원 절약 가능</p>
+            </div>
+          </div>
+          <div class="week-card">
+            <div class="mo">2026년 9월</div>
+            <div class="week" id="week"></div>
+          </div>
+          <div class="home-body">
+            <div class="overview">
+              <div class="k">이번 달 구독 지출</div>
+              <div class="amt">58,900원</div>
+              <div class="leak">💸 사용 안 한 구독 2건 발견<span class="cta">확인</span></div>
+            </div>
+            <div class="section-title">내 구독<span class="muted">6건</span></div>
+            <div class="card">
+              <div class="row"><div class="brand" style="background:#ff2d55">N</div><div class="grow"><div>넷플릭스</div><div class="muted">매월 15일</div></div><div class="price">17,000원</div></div>
+              <div class="row"><div class="brand" style="background:#1db954">S</div><div class="grow"><div>스포티파이</div><div class="muted">매월 21일</div></div><div class="price">10,900원</div></div>
+              <div class="row"><div class="brand" style="background:#000">Y</div><div class="grow"><div>유튜브 프리미엄</div><div class="muted">매월 3일</div></div><div class="price">14,900원</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="tabbar">
+          <a class="on" href="#">🏠<span>홈</span></a>
+          <a href="#">📅<span>캘린더</span></a>
+          <a href="#">📄<span>구독</span></a>
+          <a href="#">👤<span>마이</span></a>
+        </div>
+        <button class="fab">+</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const days = ["일","월","화","수","목","금","토"];
+const today = 12;
+const el = document.getElementById("week");
+for (let d = 8; d <= 14; d++) {
+  const on = d === today;
+  el.insertAdjacentHTML("beforeend", `<button class="${on ? "on" : ""}"><span class="num">${d}</span><span class="marks">${d % 3 === 0 ? "<i style=\"background:#fff\"></i>" : ""}</span></button>`);
+}
+</script>
+</body>
+</html>

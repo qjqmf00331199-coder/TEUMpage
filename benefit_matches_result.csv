@@ -1,0 +1,5 @@
+user_id,bundle_id,vendor,product_name,current_services,current_total,price_bundled,potential_savings,이유
+u1,3,LG U+,유독 & 디즈니+ 결합상품,디즈니플러스 - Standard,9900,4900,5000,결합하면 매달 5,000원 절약
+u1,5,Naver,네이버멤버십 & Spotify 결합상품,"네이버 플러스 멤버십, 스포티파이 - Premium",15800,4900,10900,"둘 다 개별 결제 중 → 네이버멤버십 하나로 합치면 10,900원 절약 (BENEFIT-02 스펙과 동일 수치)"
+u1,1,SKT,SKT & Netflix 결합상품,넷플릭스 - Standard,13500,13500,0,"price_bundled 실제 할인가로 채우면 값 바뀜 (지금은 미기입 상태 그대로 씀)"
+u1,-,-,-,tving-basic,-,-,-,"이미 결합(KT)으로 등록돼 있어서 매칭 대상에서 자동 제외됨"

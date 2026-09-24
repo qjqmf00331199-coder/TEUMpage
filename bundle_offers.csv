@@ -1,0 +1,6 @@
+id,product_name,vendor,matched_services,category,icon,card_title,card_body,plan_type,price_bundled,price_vendor,price_matched_services,price_discount,notice,official_url,event_enddate
+1,SKT & Netflix 결합상품,SKT,netflix-standard,통신사 결합,🎬,결합하면 넷플릭스 공짜,SKT 우주패스 결합 혜택,결합,13500,13500,13500,13500,,,2026-12-31
+2,KT & Tving 결합상품,KT,"tving-basic;genie-music;millie-library",통신사 결합,🎧,티빙·지니·밀리 하나 골라 무료,KT 요고 요금제 결합 시,결합,9900,9900,9900,9900,하나만 선택 가능,,2026-12-31
+3,유독 & 디즈니+ 결합상품,LG U+,disney-plus-standard,통신사 결합,🏰,"디즈니+ 결합하고 매달 5,000원 할인",LG U+ 유독 구독 결합,결합,4900,9900,9900,5000,,,2026-12-31
+4,쿠팡 와우 결합상품,쿠팡,coupang-play,커머스 멤버십,📦,"로켓배송+쿠팡플레이 7,890원",쿠팡 와우 멤버십 하나로,결합,0,7890,7890,7890,쿠팡플레이는 와우회원 무료 제공,,2026-12-31
+5,네이버멤버십 & Spotify 결합상품,Naver,"naver-membership;spotify-premium",커머스 멤버십,🎵,네이버 혜택 그대로 스포티파이까지,네이버플러스 멤버십 결합,결합,4900,4900,15800,10900,네이버멤버십 유지만 하면 스포티파이 별도 결제 불필요,,2026-12-31

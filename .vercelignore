@@ -1,0 +1,35 @@
+# 배포에서 제외 — 사이트 렌더링에 쓰이지 않는 문서·데이터·원본 파일
+# (index.html, assets/, teum_deck.html, teum_home.html 은 계속 배포됨)
+
+# 기획·스펙 문서
+SPEC_*.md
+teum_landing_copy*.md
+
+# 데이터·쿼리
+*.sql
+*.csv
+teum_icp_keywords.json
+
+# 압축본·대용량 원본
+*.zip
+/김도현.png
+/박서연.png
+
+# 이메일 템플릿 작업물
+email/
+
+# 로컬 설정
+.env*
+.playwright-mcp/
+
+# 로컬 백업본
+index.backup-*.html
+index.pre-*.html
+
+# 구버전 온보딩·백업 보관 폴더 (배포 제외)
+_old/
+
+# 에이전트 스킬·도구 설정
+.agents/
+.claude/
+skills-lock.json

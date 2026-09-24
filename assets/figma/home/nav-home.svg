@@ -1,0 +1,24 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="151.6" height="149.321" viewBox="0 0 151.6 149.321" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 12">
+<g id="FabCircle" filter="url(#filter0_d_0_16)">
+<ellipse cx="75.7999" cy="66.6595" rx="55.7972" ry="54.6579" fill="#2F80ED"/>
+</g>
+<path id="HouseDoor" d="M69.7615 74.8588C69.7615 72.097 72.0004 69.8582 74.7622 69.8582H77.0092C79.771 69.8582 82.0099 72.097 82.0099 74.8588V86.6997H69.7615V74.8588Z" fill="#2F80ED"/>
+<g id="Icon/&#237;&#153;&#136;">
+<path id="Vector" d="M53.8346 62.6174L75.8859 44.3087L97.9373 62.6174V86.1573C97.9373 87.1978 97.5273 88.1957 96.7975 88.9315C96.0677 89.6672 95.0779 90.0806 94.0458 90.0806H57.726C56.694 90.0806 55.7042 89.6672 54.9744 88.9315C54.2446 88.1957 53.8346 87.1978 53.8346 86.1573V62.6174Z" stroke="white" stroke-width="2.55174" stroke-linejoin="round"/>
+<path id="Vector_2" d="M68.1027 90.0807V74.3875H83.6683V90.0807" stroke="white" stroke-width="2.55174" stroke-linecap="round"/>
+<path id="Vector_3" d="M75.8854 74.3875V90.0807" stroke="white" stroke-width="2.55174" stroke-linecap="round"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_0_16" x="1.20352e-07" y="-1.23073e-08" width="151.6" height="149.321" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="8.00105"/>
+<feGaussianBlur stdDeviation="10.0013"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.184 0 0 0 0 0.502 0 0 0 0 0.929 0 0 0 0.4 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_16"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_16" result="shape"/>
+</filter>
+</defs>
+</svg>

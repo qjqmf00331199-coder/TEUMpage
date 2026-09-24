@@ -1,0 +1,10 @@
+id,brand,category,card_title,card_body,plan_type,price_standalone,price_discount,apply_method,requirement,official_url,event_enddate
+netflix-standard,넷플릭스 - Standard,OTT,넷플릭스 스탠다드,광고 없이 풀HD 시청,단독,13500,,공식 앱/웹 접속 후 본인인증,결합 회선 1개당 1계정,https://www.netflix.com,2026-12-31
+tving-basic,티빙 - 베이직,OTT,티빙 베이직,광고형 스탠다드,단독,5500,,공식 앱/웹 접속 후 본인인증,,https://www.tving.com,2026-12-31
+genie-music,지니뮤직 - 스트리밍,음악,지니뮤직 스트리밍,무제한 스트리밍,단독,8000,,공식 앱 접속 후 본인인증,,https://www.genie.co.kr,2026-12-31
+millie-library,밀리의서재 - 독서 무제한,도서,밀리의서재 독서 무제한,전자책 무제한,단독,9900,,공식 앱 접속 후 본인인증,,https://www.millie.co.kr,2026-12-31
+disney-plus-standard,디즈니플러스 - Standard,OTT,디즈니플러스 스탠다드,광고 없이 풀HD 시청,단독,9900,,공식 앱/웹 접속 후 본인인증,,https://www.disneyplus.com,2026-12-31
+coupang-play,쿠팡플레이,OTT,쿠팡플레이,와우회원 전용 OTT,단독,7890,,와우 멤버십 가입,,https://www.coupangplay.com,2026-12-31
+spotify-premium,스포티파이 - Premium,음악,스포티파이 프리미엄,광고 없이 무제한 스트리밍,단독,10900,,공식 앱/웹 접속 후 본인인증,,https://www.spotify.com,2026-12-31
+naver-membership,네이버 플러스 멤버십,커머스,네이버플러스 멤버십,적립·할인 혜택,단독,4900,,공식 앱/웹 접속 후 본인인증,,https://www.naver.com,2026-12-31
+
