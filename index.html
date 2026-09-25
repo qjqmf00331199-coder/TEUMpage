@@ -27,7 +27,7 @@
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){--p-bg:#0b101a;--p-ink:#eef2f8;--p-muted:#9ba7b9;--p-quiet:#76829a;--p-card:#131a27;--p-glass:rgba(19,26,39,.84);--p-line:#243148;--p-soft:#18284a;--p-shadow:rgba(0,0,0,.35);--p-phone:rgba(0,0,0,.5);color-scheme:dark}}
 :root[data-theme=dark]{--p-bg:#0b101a;--p-ink:#eef2f8;--p-muted:#9ba7b9;--p-quiet:#76829a;--p-card:#131a27;--p-glass:rgba(19,26,39,.84);--p-line:#243148;--p-soft:#18284a;--p-shadow:rgba(0,0,0,.35);--p-phone:rgba(0,0,0,.5);color-scheme:dark}
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;overflow-x:clip}
 body{margin:0;background:var(--p-bg);color:var(--p-ink);transition:background-color .3s;font-family:'Dunggeunmiso','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;word-break:keep-all}
 h1,h2,h3,p{margin:0}button,input{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}a{color:inherit;text-decoration:none}
 img{display:block}
@@ -284,7 +284,8 @@ img{display:block}
 /* ── below the fold ── */
 .eyebrow{display:inline-flex;align-items:center;gap:6px;margin-bottom:14px;padding:7px 16px;border-radius:99px;background:var(--p-soft);color:var(--primary);font-size:.8rem;font-weight:700;letter-spacing:-.01em}
 .eyebrow:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--primary)}
-.why,.match,.calc,.end{position:relative;background-image:radial-gradient(circle at 10% 0%,rgba(49,130,246,.09),transparent 42%),radial-gradient(circle at 92% 85%,rgba(49,130,246,.07),transparent 46%);background-repeat:no-repeat}
+.why,.match,.calc,.end{position:relative;isolation:isolate}
+.why:before,.match:before,.calc:before,.end:before{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:50%;width:100vw;margin-left:-50vw;pointer-events:none;background:radial-gradient(ellipse 32% 40% at 12% 40%,rgba(49,130,246,.09),transparent),radial-gradient(ellipse 32% 35% at 88% 65%,rgba(49,130,246,.07),transparent)}
 .why{max-width:1240px;margin:0 auto;padding:clamp(72px,7vw,140px) 24px 40px;text-align:center}
 .why h2,.end h2,.calc h2{font-size:clamp(1.6rem,2.6vw,3rem);line-height:1.3;letter-spacing:-.02em;font-weight:700}
 .why>p{margin-top:14px;color:var(--p-muted);line-height:1.7}
