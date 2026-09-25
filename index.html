@@ -187,7 +187,6 @@ img{display:block}
 @keyframes vtOut{to{transform:translateX(-28%);filter:brightness(.9)}}
 @keyframes vtBackIn{from{transform:translateX(-28%);filter:brightness(.9)}}
 @keyframes vtBackOut{to{transform:translateX(100%)}}
-.sb{height:26px;padding:6px 20px 0;font-size:12px;font-weight:700;background:#fff}
 .bar{position:relative;height:50px;background:#fff;border-bottom:1px solid #eef0f4;display:grid;place-items:center;font-size:16px;font-weight:700}
 .back{position:absolute;left:8px;top:5px;width:40px;height:40px;border:0;background:none;display:grid;place-items:center}
 .back svg{width:20px;height:20px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -313,7 +312,7 @@ footer{padding:26px;border-top:1px solid var(--p-line);text-align:center;color:v
 
 /* 혜택·AI 점검 — Figma SP-BNF-Main / MntWaiting / Insp / Detail */
 .bd.pad{padding-bottom:100px}
-.bn-top{padding:8px 20px 10px;background:var(--bg);font-size:20px;font-weight:700}
+.bn-top{padding:20px 20px 10px;background:var(--bg);font-size:20px;font-weight:700}
 .bn-ban{position:relative;flex:none;padding:18px 18px 16px;border-radius:18px;background:#14171c;color:#fff;overflow:hidden}
 .bn-ban:after{content:"";position:absolute;right:-30px;top:-40px;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.16),transparent 70%)}
 .bn-ban.blue{background:linear-gradient(135deg,#3b8eff,#2568de);box-shadow:0 10px 20px rgba(37,104,222,.25)}
@@ -716,7 +715,7 @@ dial.addEventListener('click',e=>{const k=e.target.closest('[data-kind]');if(k){
 
 /* flows — Figma SP-ADD-Img / SP-ADD-Mic / 구독 등록 */
 const I=(p)=>'<svg viewBox="0 0 24 24">'+p+'</svg>',CHEV=I('<path d="M9 6l6 6-6 6"/>'),BACK=I('<path d="M15 5l-7 7 7 7"/>'),NAVH=document.querySelector('.nav').outerHTML;
-const head=t=>'<div class="sb"></div><div class="bar"><button class="back" type="button" data-home aria-label="뒤로">'+BACK+'</button>'+t+'</div>';
+const head=t=>'<div class="bar"><button class="back" type="button" data-home aria-label="뒤로">'+BACK+'</button>'+t+'</div>';
 const RES=[['assets/figma/home/netflix.png','Netflix','매월 2일 · 18,000원'],['assets/services/Youtube.png','YouTube Premium','매월 4일 · 18,000원'],['assets/services/Tving.png','TVING','매월 12일 · 18,000원']];
 const TXT='오늘, 17,000원, 넷플릭스, 요금제, 가입';
 const THUMBS='<div class="thumbs"><div><img src="assets/figma/flow/thumb-1.png" alt=""><i>×</i></div><div><img src="assets/figma/flow/thumb-2.png" alt=""><i>×</i></div></div><p class="cnt">2장 선택됨 · 필요 없는 이미지는 삭제할 수 있어요</p>';
@@ -741,10 +740,10 @@ const MARK='<span class="mark" aria-hidden="true"><i></i><i></i><b></b></span>';
 let bnCat='all',bnSel='nv',bnFrom=0;
 $('.ov .amt').textContent=W(TOTAL);$('.leak span').textContent='새는 구독 '+RECS.length+'개 · 최대 '+W(SAVE)+' 절약';
 const lg=(o,k)=>'<span class="bn-lg'+(k?' '+k:'')+'">'+o.logos.map(f=>'<img src="'+L+f+'" alt="">').join(k==='in'?'+':'')+'</span>';
-const bnHead=(t,to)=>'<div class="sb"></div><div class="bar"><button class="back" type="button" data-bn="'+to+'" aria-label="뒤로">'+BACK+'</button>'+t+'</div>';
+const bnHead=(t,to)=>'<div class="bar"><button class="back" type="button" data-bn="'+to+'" aria-label="뒤로">'+BACK+'</button>'+t+'</div>';
 const bnNav=()=>NAVH;
 function bnMain(){const list=OFF.filter(o=>bnCat==='all'||o.cat===bnCat),cn=CATS.find(c=>c[0]===bnCat)[1];
- return '<div class="sb"></div><div class="bn-top">혜택</div><div class="bd pad">'
+ return '<div class="bn-top">혜택</div><div class="bd pad">'
  +'<div class="bn-ban"><h3>지금 새는 구독을 찾아보세요</h3><p>AI가 내 구독 조합을 분석해 더 싸게 쓰는 방법을 알려드려요.</p><button type="button" data-bn="1">구독 점검하기</button>'+MARK+'</div>'
  +'<div class="bn-chips" role="group" aria-label="혜택 카테고리">'+CATS.map(c=>'<button type="button" data-cat="'+c[0]+'" aria-pressed="'+(c[0]===bnCat)+'">'+c[1]+'</button>').join('')+'</div>'
  +'<h3 class="bn-t">인기 구독 혜택</h3>'
