@@ -90,8 +90,9 @@ npx -y serve -l 5173 .
 → http://localhost:5173
 
 ### 배포
-Vercel. `.vercelignore`가 문서·데이터·백업·에이전트 설정을 배포에서 제외함.
-새 노트북에서는 `npx vercel link`로 `teumpaga` 프로젝트에 다시 연결 (`.vercel/`, `.env.local`은 git에 없음).
+Vercel Git 연동. `main`에 푸시하면 `teumpaga` 프로젝트로 자동 프로덕션 배포 (다른 브랜치·PR은 프리뷰 배포).
+`.vercelignore`가 문서·데이터·백업·에이전트 설정을 배포에서 제외함.
+CLI(`npx vercel link` → `npx vercel --prod`)는 푸시 없이 급하게 배포할 때만 사용 (`.vercel/`, `.env.local`은 git에 없음).
 
 ---
 
