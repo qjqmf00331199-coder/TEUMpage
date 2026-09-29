@@ -512,14 +512,12 @@ footer{padding:26px;border-top:1px solid var(--p-line);text-align:center;color:v
 }
 @media(max-width:900px){.st-mascot{display:none}.stats{grid-template-columns:1fr 1fr}}
 @media(max-width:760px){
- .stage{padding:0;background:var(--p-bg)!important}
+ .stage{padding:0 0 16px;background:var(--p-bg)!important}
  .st-logo{position:static;align-self:flex-start;margin:24px 0 0 16px}
  .theme-btn{top:22px;right:16px;width:40px;height:40px}
  .top-cta{top:22px;right:64px;height:40px;padding:0 14px;font-size:.8rem}
  .st-side{margin:16px 20px 22px}
  .guide{display:none}
- .phone{border:0;border-radius:0;box-shadow:none}
- ::view-transition-image-pair(teum-app){border-radius:0}
  .scr,.bd{overscroll-behavior:auto}
 }
 @media(max-width:420px){.stats{grid-template-columns:1fr}}
@@ -687,7 +685,8 @@ const $=s=>document.querySelector(s),wrap=$('#phoneWrap'),app=$('#app'),scr=$('#
 const rmq=matchMedia('(prefers-reduced-motion:reduce)');let reduced=rmq.matches;rmq.addEventListener('change',e=>reduced=e.matches);
 
 /* SP-ServPG-03/04/09: keep 390×844 ratio, scale to fit, cap at 1; full width on mobile */
-function fit(){const m=innerWidth<=760;const cap=innerWidth>=1680&&innerHeight>=1000?1.15:1;const s=m?innerWidth/390:Math.min(cap,Math.max(.6,(innerHeight-(innerWidth>1180?64:48))/844));wrap.style.setProperty('--s',s)}
+/* 모바일: 폰 전체가 한 화면에 보이게 너비·높이 중 작은 쪽에 맞춤. 주소창 접힘으로 높이만 바뀔 땐 다시 계산 안 함(스크롤 중 크기 출렁임 방지) */
+let fitW=0;function fit(){const m=innerWidth<=760;if(m&&innerWidth===fitW)return;fitW=m?innerWidth:0;const cap=innerWidth>=1680&&innerHeight>=1000?1.15:1;const s=m?Math.min((innerWidth-32)/390,(innerHeight-32)/844):Math.min(cap,Math.max(.6,(innerHeight-(innerWidth>1180?64:48))/844));wrap.style.setProperty('--s',s)}
 let rz=0;addEventListener('resize',()=>{cancelAnimationFrame(rz);rz=requestAnimationFrame(fit)});fit();
 
 const root=document.documentElement,mq=matchMedia('(prefers-color-scheme:dark)');
